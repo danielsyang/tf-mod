@@ -14,7 +14,8 @@ provider "aws" {
 }
 
 data "terraform_remote_state" "vpc" {
-  backend = "remote"
+  hostname = "app.terraform.io"
+  backend  = "remote"
   config = {
     organization = "my-own-local-company"
     workspaces = {
