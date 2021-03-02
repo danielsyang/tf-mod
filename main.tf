@@ -9,10 +9,6 @@ terraform {
   backend "remote" {
     hostname     = "app.terraform.io"
     organization = "my-own-local-company"
-
-    workspaces {
-      name = "tf-test-dev"
-    }
   }
 
   required_version = "~> 0.14"
@@ -24,6 +20,12 @@ provider "aws" {
 
 data "terraform_remote_state" "vpc" {
   backend = "remote"
+  config = {
+    organization = "my-own-local-company"
+    workspaces = {
+      name = "tf-test-dev"
+    }
+  }
 }
 
 module "security_group" {
